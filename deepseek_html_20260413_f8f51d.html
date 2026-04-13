@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>لوحة المستخدمين | تصميم عصري</title>
+
+    <!-- Google Fonts + Almarai -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap 5 (RTL support via bootstrap.rtl) -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.rtl.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome 6 (free icons) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: linear-gradient(145deg, #e9f0fc 0%, #c9dcf5 100%);
+        font-family: "Almarai", sans-serif;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+        position: relative;
+      }
+      /* main card container */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(0px);
+        border-radius: 40px;
+        box-shadow:
+          0 25px 45px -12px rgba(0, 0, 0, 0.25),
+          0 4px 12px rgba(0, 0, 0, 0.05);
+        transition: all 0.2s ease;
+        overflow: hidden;
+        width: 100%;
+        max-width: 1280px;
+        border: 1px solid rgba(255, 255, 255, 0.6);
+      }
+
+      /* header area with gradient and icon */
+      .table-header {
+        background: linear-gradient(105deg, #1e2b3c 0%, #1e3a4d 100%);
+        padding: 1.5rem 2rem 1.2rem 2rem;
+        border-bottom: 4px solid #ffb347;
+      }
+
+      .header-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .title-text h1 {
+        font-size: 1.8rem;
+        font-weight: 800;
+        margin: 0;
+        color: white;
+        letter-spacing: -0.3px;
+      }
+
+      .title-text p {
+        margin: 0;
+        color: #cbdbe6;
+        font-weight: 400;
+        font-size: 0.9rem;
+      }
+
+      .badge-counter {
+        background: #ffb347;
+        color: #1e2b3c;
+        border-radius: 60px;
+        padding: 0.45rem 1.2rem;
+        font-weight: 800;
+        font-size: 0.9rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      /* table wrapper responsive */
+      .table-responsive-custom {
+        padding: 0rem 1.8rem 2rem 1.8rem;
+        background: transparent;
+      }
+
+      /* modern table design */
+      .modern-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+        margin: 0;
+      }
+
+      .modern-table thead tr {
+        background: transparent;
+      }
+
+      .modern-table th {
+        font-family: "Almarai", sans-serif;
+        font-weight: 800;
+        font-size: 1.05rem;
+        padding: 1rem 1rem;
+        background: #f1f5fc;
+        color: #1f3a4b;
+        border: none;
+        border-radius: 20px;
+        text-align: center;
+        letter-spacing: -0.2px;
+        transition: all 0.2s;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+      }
+
+      .modern-table th i {
+        margin-left: 8px;
+        color: #ff8c42;
+        font-size: 1.1rem;
+      }
+
+      .modern-table td {
+        background-color: #ffffff;
+        padding: 1rem 1rem;
+        border: none;
+        border-radius: 20px;
+        font-family: "Almarai", sans-serif;
+        font-weight: 700;
+        color: #1f2f3e;
+        text-align: center;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+        vertical-align: middle;
+      }
+
+      /* hover effect rows */
+      .modern-table tbody tr {
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        cursor: default;
+      }
+
+      .modern-table tbody tr:hover td {
+        background: linear-gradient(120deg, #fff6eb, #fff2e6);
+        box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.12);
+        transform: scale(1.002);
+        color: #1e2b2f;
+      }
+
+      /* special styling for password column */
+      .password-cell {
+        font-family: "Almarai", monospace;
+        letter-spacing: 0.5px;
+        background: #fef7e8;
+        font-weight: 800;
+        color: #c25b00;
+        display: inline-block;
+        width: auto;
+        background: #fff0e0;
+        padding: 0.3rem 1rem;
+        border-radius: 60px;
+        font-size: 0.9rem;
+      }
+
+      .password-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .password-value {
+        background: #fff0e0;
+        padding: 0.3rem 1rem;
+        border-radius: 40px;
+        display: inline-block;
+        font-weight: 800;
+        font-family: monospace;
+        letter-spacing: 0.5px;
+      }
+
+      .copy-btn {
+        background: transparent;
+        border: none;
+        color: #ff8c42;
+        font-size: 0.9rem;
+        transition: 0.2s;
+        cursor: pointer;
+        padding: 0 5px;
+      }
+
+      .copy-btn:hover {
+        color: #d96c1c;
+        transform: scale(1.1);
+      }
+
+      /* id and name stylish */
+      .user-name {
+        font-weight: 800;
+        color: #1f4973;
+        position: relative;
+        display: inline-block;
+      }
+
+      .user-id {
+        font-family: monospace;
+        background: #eef3fc;
+        padding: 0.2rem 0.7rem;
+        border-radius: 30px;
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+
+      /* footer note */
+      .card-footer-note {
+        background: #f8fafd;
+        padding: 1rem 2rem;
+        border-top: 1px solid rgba(0, 0, 0, 0.05);
+        text-align: center;
+        font-size: 0.8rem;
+        color: #5a6e7a;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      /* responsive adjustments */
+      @media (max-width: 768px) {
+        .glass-card {
+          border-radius: 28px;
+        }
+        .table-responsive-custom {
+          padding: 0rem 1rem 1.5rem 1rem;
+        }
+        .modern-table th,
+        .modern-table td {
+          padding: 0.8rem 0.5rem;
+          font-size: 0.8rem;
+        }
+        .title-text h1 {
+          font-size: 1.3rem;
+        }
+        .badge-counter {
+          font-size: 0.7rem;
+          padding: 0.3rem 1rem;
+        }
+        .password-value {
+          font-size: 0.7rem;
+          padding: 0.2rem 0.6rem;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .modern-table thead {
+          font-size: 0.7rem;
+        }
+        .modern-table th i {
+          display: none;
+        }
+      }
+
+      /* subtle animation */
+      @keyframes fadeSlide {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .glass-card {
+        animation: fadeSlide 0.5s ease-out;
+      }
+
+      /* tooltip copy style */
+      .copy-toast-msg {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #1e2b3c;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 40px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        z-index: 999;
+        opacity: 0;
+        transition: opacity 0.2s;
+        pointer-events: none;
+        font-family: "Almarai", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="copy-toast-msg" id="copyToast">📋 تم نسخ القيمة!</div>
+    <div
+      class="container p-0 d-flex justify-content-center align-items-center"
+      style="position: relative; z-index: 2"
+    >
+      <div class="glass-card">
+        <!-- header section with elegant style -->
+        <div class="table-header">
+          <div class="header-title">
+            <div class="title-text">
+              <h1>
+                <i class="fas fa-users-between" style="margin-left: 12px"></i>
+                بيانات المستخدمين
+              </h1>
+            </div>
+          </div>
+        </div>
+        <!-- responsive table area -->
+        <div class="table-responsive-custom">
+          <table class="modern-table" style="width: 100%">
+            <thead>
+              <tr>
+                <th><i class="fas fa-user-circle"></i> الاسم</th>
+                <th><i class="fas fa-id-card"></i> رقم التسجيل</th>
+                <th><i class="fas fa-lock"></i> الرقم السري</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- الصف الأول (محمد احمد محمود احمد) -->
+              <tr>
+                <td>
+                  <div class="user-name">محمد احمد محمود احمد</div>
+                </td>
+                <td>
+                  <span class="user-id"> 123456789 </span>
+                </td>
+                <td>
+                  <div class="password-wrapper">
+                    <span class="password-value" id="pass1">Aa123456@</span>
+                    <button
+                      class="copy-btn"
+                      onclick="copyToClipboard('Aa123456@', event)"
+                      aria-label="نسخ كلمة المرور"
+                    >
+                      <i class="far fa-copy"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              <!-- الصف الثاني (محمد احمد محمود احمد - مكرر كما في التصميم الأصلي) -->
+              <tr>
+                <td>
+                  <div class="user-name">محمد احمد محمود احمد</div>
+                </td>
+                <td>
+                  <span class="user-id"> 123456789 </span>
+                </td>
+                <td>
+                  <div class="password-wrapper">
+                    <span class="password-value" id="pass2">Aa123456@</span>
+                    <button
+                      class="copy-btn"
+                      onclick="copyToClipboard('Aa123456@', event)"
+                      aria-label="نسخ كلمة المرور"
+                    >
+                      <i class="far fa-copy"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS (for any interaction but mainly for optional tooltips) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom copy functionality with smooth feedback -->
+    <script>
+      function copyToClipboard(text, event) {
+        // منع انتشار الحدث إذا لزم الأمر
+        if (event) event.stopPropagation();
+
+        // استخدام واجهة clipboard الحديثة
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard
+            .writeText(text)
+            .then(() => {
+              showToastMessage();
+            })
+            .catch((err) => {
+              console.warn("فشل النسخ: ", err);
+              fallbackCopy(text);
+            });
+        } else {
+          fallbackCopy(text);
+        }
+      }
+
+      function fallbackCopy(text) {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.setAttribute("readonly", "");
+        textarea.style.position = "fixed";
+        textarea.style.top = "-9999px";
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+        showToastMessage();
+      }
+
+      function showToastMessage() {
+        const toastEl = document.getElementById("copyToast");
+        if (!toastEl) return;
+        toastEl.style.opacity = "1";
+        setTimeout(() => {
+          toastEl.style.opacity = "0";
+        }, 1500);
+      }
+
+      // إضافة تأثير بسيط على الصفوف عند التحميل (يمكن إضافته لجمالية اكثر)
+      document.addEventListener("DOMContentLoaded", function () {
+        // تحسين عرض الجدول وجعل جميع الصفوف متسقة
+        const rows = document.querySelectorAll(".modern-table tbody tr");
+        rows.forEach((row, idx) => {
+          row.style.animationDelay = `${idx * 0.05}s`;
+          row.style.animation = "fadeSlide 0.3s ease-out forwards";
+          row.style.opacity = "0";
+        });
+        // إزالة الـ opacity بعد الأنيميشن
+        setTimeout(() => {
+          rows.forEach((row) => {
+            row.style.animation = "";
+            row.style.opacity = "1";
+          });
+        }, 400);
+      });
+    </script>
+
+    <!-- إضافة بعض التعديلات البسيطة لجعل أيقونات bootstrap متوافقة مع RTL -->
+    <style>
+      .modern-table th,
+      .modern-table td {
+        text-align: center;
+      }
+      .copy-btn {
+        background: rgba(255, 140, 66, 0.1);
+        border-radius: 50%;
+        width: 32px;
+        height: 32px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .copy-btn:hover {
+        background: #ff8c42;
+        color: white;
+      }
+      .copy-btn i {
+        font-size: 0.9rem;
+      }
+      .user-name i {
+        margin-left: 6px;
+      }
+      .badge-counter i {
+        margin-left: 6px;
+      }
+      /* تحسين المظهر العام للهوامش */
+      .glass-card {
+        transition: all 0.25s;
+      }
+      .modern-table td .user-id i {
+        margin-left: 4px;
+      }
+      /* إضافة خطوط دقيقة بين الأعمدة للجمال */
+      .modern-table td {
+        border: 1px solid rgba(0, 0, 0, 0.02);
+      }
+      footer i {
+        margin: 0 4px;
+      }
+      /* أيقونة رائعة للجدول */
+      th i {
+        margin-left: 6px;
+      }
+      /* تحسين لون الخلفية لنسخ الزر */
+      .password-wrapper {
+        gap: 10px;
+      }
+
+      @media (max-width: 550px) {
+        .password-value {
+          font-size: 0.7rem;
+          padding: 0.2rem 0.5rem;
+        }
+        .copy-btn {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    </style>
+  </body>
+</html>

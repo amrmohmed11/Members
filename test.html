@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>نموذج ثلاثي المدخلات | تصميم حديث</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family:
+          "Segoe UI", "Tajawal", system-ui, "Cairo", "Helvetica Neue",
+          sans-serif;
+        padding: 1.5rem;
+      }
+
+      /* بطاقة النموذج */
+      .form-card {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(0px);
+        border-radius: 2rem;
+        box-shadow:
+          0 25px 45px -12px rgba(0, 0, 0, 0.25),
+          0 8px 18px rgba(0, 0, 0, 0.05);
+        width: 100%;
+        max-width: 520px;
+        padding: 2rem 2rem 2.2rem;
+        transition:
+          transform 0.2s ease,
+          box-shadow 0.2s ease;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+      }
+
+      .form-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 32px 55px -16px rgba(0, 0, 0, 0.3);
+      }
+
+      /* العنوان */
+      .form-title {
+        font-size: 1.9rem;
+        font-weight: 700;
+        color: #1e2f5e;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.3px;
+        text-align: center;
+        border-right: 5px solid #3a86ff;
+        padding-right: 1rem;
+        margin-right: 0.5rem;
+      }
+
+      .subhead {
+        text-align: center;
+        color: #5e6f8d;
+        font-size: 0.9rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px dashed #cbd5e1;
+        padding-bottom: 0.75rem;
+        display: inline-block;
+        width: auto;
+      }
+
+      /* تنسيق الحقول */
+      .input-group {
+        margin-bottom: 1.6rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .input-group label {
+        font-weight: 600;
+        color: #1e2f5e;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .input-group label i {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 1.1rem;
+      }
+
+      .required-star {
+        color: #e63946;
+        font-size: 1.2rem;
+        margin-right: 0.2rem;
+      }
+
+      .input-field {
+        width: 100%;
+        padding: 0.9rem 1.2rem;
+        font-size: 1rem;
+        font-family: inherit;
+        border: 2px solid #e2e8f0;
+        border-radius: 1.25rem;
+        background-color: #ffffff;
+        transition: all 0.25s ease;
+        outline: none;
+        color: #0f172a;
+        font-weight: 500;
+      }
+
+      .input-field:focus {
+        border-color: #3a86ff;
+        box-shadow: 0 0 0 4px rgba(58, 134, 255, 0.2);
+        background-color: #fefefe;
+      }
+
+      .input-field::placeholder {
+        color: #94a3b8;
+        font-weight: 400;
+        font-size: 0.85rem;
+      }
+
+      /* زر الإرسال */
+      .submit-btn {
+        background: linear-gradient(95deg, #1e3c72 0%, #2a5298 100%);
+        color: white;
+        border: none;
+        padding: 0.9rem 1.8rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-radius: 2rem;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.25s;
+        margin-top: 0.8rem;
+        font-family: inherit;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.6rem;
+        box-shadow: 0 5px 12px rgba(0, 20, 50, 0.2);
+      }
+
+      .submit-btn:hover {
+        background: linear-gradient(95deg, #0f2b4f 0%, #1f4080 100%);
+        transform: scale(0.98);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      .submit-btn:active {
+        transform: scale(0.96);
+      }
+
+      /* رسالة التغذية الراجعة */
+      .feedback-message {
+        margin-top: 1.5rem;
+        background: #f0f9ff;
+        border-radius: 1.2rem;
+        padding: 1rem;
+        text-align: center;
+        font-size: 0.9rem;
+        color: #0c4e6e;
+        border-right: 4px solid #3a86ff;
+        transition: all 0.2s;
+        word-break: break-word;
+        font-weight: 500;
+      }
+
+      .feedback-success {
+        background: #e6f7ec;
+        color: #166534;
+        border-right-color: #22c55e;
+      }
+
+      /* تنسيق بسيط للهواتف */
+      @media (max-width: 500px) {
+        .form-card {
+          padding: 1.5rem;
+        }
+        .form-title {
+          font-size: 1.6rem;
+        }
+        .input-field {
+          padding: 0.75rem 1rem;
+        }
+      }
+
+      /* جعل الأيقونات التلميحية جميلة */
+      .input-group label::before {
+        content: "✨";
+        font-size: 0.9rem;
+        opacity: 0.7;
+      }
+      /* إزالة الأيقونة الافتراضية لآخر حقلين بشكل بسيط */
+      .input-group:nth-child(2) label::before {
+        content: "📧";
+      }
+      .input-group:nth-child(3) label::before {
+        content: "📞";
+      }
+      /* استثناء الحقل الأول */
+      .input-group:first-child label::before {
+        content: "👤";
+      }
+
+      /* تحسين اتجاه النص داخل الحقول عند كتابة عربي/إنجليزي */
+      .input-field {
+        direction: ltr;
+        text-align: start;
+      }
+      /* لدعم الكتابة العربية بشكل طبيعي */
+      .input-field[dir="auto"] {
+        direction: auto;
+      }
+      /* تعديل بسيط للراحة البصرية */
+      footer {
+        font-size: 0.7rem;
+        text-align: center;
+        margin-top: 1.5rem;
+        color: #7c8ba0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-card">
+      <h1 class="form-title">📋 نموذج إدخال ثلاثي</h1>
+      <div style="text-align: center">
+        <span class="subhead">✨ يرجى ملء البيانات بدقة ✨</span>
+      </div>
+
+      <!-- نموذج يحتوي على 3 مدخلات فقط (input) -->
+      <form id="mainForm" action="#" method="post">
+        <!-- المدخل الأول: الاسم الكامل (نص) -->
+        <div class="input-group">
+          <label>
+            <span>الاسم الكامل</span>
+            <span class="required-star">*</span>
+          </label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullname"
+            class="input-field"
+            placeholder="مثال: أحمد محمد عبدالله"
+            required
+            autocomplete="name"
+            dir="auto"
+          />
+        </div>
+
+        <!-- المدخل الثاني: البريد الإلكتروني (type email) -->
+        <div class="input-group">
+          <label>
+            <span>البريد الإلكتروني</span>
+            <span class="required-star">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="input-field"
+            placeholder="example@domain.com"
+            required
+            autocomplete="email"
+            dir="ltr"
+          />
+        </div>
+
+        <!-- المدخل الثالث: رقم الهاتف (type tel) -->
+        <div class="input-group">
+          <label>
+            <span>رقم الهاتف</span>
+            <span class="required-star">*</span>
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            class="input-field"
+            placeholder="05xxxxxxxx أو +966..."
+            required
+            autocomplete="tel"
+            dir="ltr"
+          />
+        </div>
+
+        <!-- زر الإرسال (ليس input بل button -> لا يُحتسب ضمن الـ 3 inputs) -->
+        <button type="submit" class="submit-btn">
+          <span>📨</span> إرسال النموذج
+        </button>
+      </form>
+
+      <!-- منطقة عرض رسالة بعد الإرسال (تغذية راجعة) -->
+      <div id="formFeedback" class="feedback-message">
+        ⚡ سيتم عرض ملخص بياناتك بعد الإرسال
+      </div>
+      <footer>✔️ جميع الحقول مطلوبة | نموذج تفاعلي بثلاثة مدخلات</footer>
+    </div>
+
+    <script>
+      (function () {
+        // التأكد من وجود العناصر
+        const form = document.getElementById("mainForm");
+        const feedbackDiv = document.getElementById("formFeedback");
+
+        // مراجع للحقول الثلاثة (لقراءة القيم)
+        const fullNameInput = document.getElementById("fullName");
+        const emailInput = document.getElementById("email");
+        const phoneInput = document.getElementById("phone");
+
+        // وظيفة لعرض رسالة نجاح مع البيانات المُدخلة
+        function showSuccessMessage(name, email, phone) {
+          // تنسيق الرسالة بشكل جميل (يدعم العربية)
+          feedbackDiv.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <span style="font-weight: bold;">✅ تم إرسال النموذج بنجاح!</span>
+                    <div style="background: #ffffffaa; border-radius: 16px; padding: 10px; margin-top: 4px; text-align: right;">
+                        <span>👤 <strong>الاسم:</strong> ${escapeHtml(name)}</span><br>
+                        <span>📧 <strong>البريد:</strong> ${escapeHtml(email)}</span><br>
+                        <span>📞 <strong>الهاتف:</strong> ${escapeHtml(phone)}</span>
+                    </div>
+                    <span style="font-size: 0.8rem; opacity: 0.8;">✨ شكراً لتعبئة النموذج ✨</span>
+                </div>
+            `;
+          feedbackDiv.classList.add("feedback-success");
+          // إزالة التأكيد بعد 5 ثواني مع الاحتفاظ برسالة جديدة (اختياري)
+          setTimeout(() => {
+            if (feedbackDiv.classList.contains("feedback-success")) {
+              // لا نمسح المحتوى بل نعيد التلميح الهادئ ولكن نحتفظ بالرسالة
+              // فقط نزيل الخلفية الخاصة بعد فترة طويلة؟ أفضل الاحتفاظ بها، ولكن نضيف تأثير بسيط
+              // لكن لا داعي لإزالة المحتوى; فقط نتركه.
+            }
+          }, 4000);
+        }
+
+        // دالة بسيطة لمنع XSS
+        function escapeHtml(str) {
+          if (!str) return "";
+          return str
+            .replace(/[&<>]/g, function (m) {
+              if (m === "&") return "&amp;";
+              if (m === "<") return "&lt;";
+              if (m === ">") return "&gt;";
+              return m;
+            })
+            .replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function (c) {
+              return c;
+            });
+        }
+
+        // معالجة حدث submit
+        form.addEventListener("submit", function (event) {
+          // الحصول على القيم وتنظيفها من المسافات البادئة/الزائدة
+          let fullName = fullNameInput.value.trim();
+          let email = emailInput.value.trim();
+          let phone = phoneInput.value.trim();
+
+          // التحقق الإضافي (لضمان أن الحقول ليست فارغة، لكن required attribute يقوم بذلك بالفعل)
+          // مع ذلك، نتحقق يدويًا لضمان عدم وجود فراغات خادعة
+          if (fullName === "" || email === "" || phone === "") {
+            // في حال تخطى المتصفح التحقق بسبب ظروف نادرة، نعرض رسالة
+            feedbackDiv.innerHTML =
+              "⚠️ الرجاء تعبئة جميع الحقول الثلاثة قبل الإرسال ⚠️";
+            feedbackDiv.classList.remove("feedback-success");
+            feedbackDiv.style.background = "#fff0f0";
+            feedbackDiv.style.borderRightColor = "#e63946";
+            event.preventDefault(); // نمنع الإرسال
+            return false;
+          }
+
+          // تحقق بسيط من صيغة البريد الإلكتروني (إضافي)
+          const emailPattern = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+          if (!emailPattern.test(email)) {
+            feedbackDiv.innerHTML =
+              "📧 البريد الإلكتروني غير صالح. مثال: name@domain.com";
+            feedbackDiv.classList.remove("feedback-success");
+            feedbackDiv.style.background = "#fff0f0";
+            feedbackDiv.style.borderRightColor = "#e63946";
+            event.preventDefault();
+            return false;
+          }
+
+          // تحقق بسيط من رقم الهاتف: على الأقل 9 أرقام (اختياري لكن مفيد)
+          const phoneClean = phone.replace(/[+\-\s\(\)]/g, "");
+          if (
+            phoneClean.length < 7 ||
+            !/^[\d+]+$/.test(phoneClean.replace(/\+/g, ""))
+          ) {
+            feedbackDiv.innerHTML =
+              "📞 رقم الهاتف يجب أن يحتوي على أرقام صالحة (على الأقل 7 أرقام).";
+            feedbackDiv.classList.remove("feedback-success");
+            feedbackDiv.style.background = "#fff0f0";
+            feedbackDiv.style.borderRightColor = "#e63946";
+            event.preventDefault();
+            return false;
+          }
+
+          // --- إذا وصلنا إلى هنا: جميع المدخلات صحيحة ---
+          // منع الإرسال الفعلي (حتى لا يعيد تحميل الصفحة أو يرسل إلى الخادم)
+          event.preventDefault();
+
+          // عرض رسالة النجاح مع البيانات
+          showSuccessMessage(fullName, email, phone);
+          // إعادة تعيين لون الخلفية إلى الوضع الطبيعي
+          feedbackDiv.style.background = "";
+          feedbackDiv.style.borderRightColor = "";
+
+          // (اختياري) يمكن إعادة تعيين النموذج إذا أردت، لكن الأفضل ترك البيانات للمستخدم
+          // يمكن إضافة خيار مسح الحقول بعد نجاح الإرسال؟ لا داعي للحفاظ على التجربة.
+          // ولكن حسب الرغبة: نضيف تأثير تمرير لطيف.
+
+          // اختياري: تمرير إلى رسالة النجاح لتكون مرئية
+          feedbackDiv.scrollIntoView({ behavior: "smooth", block: "nearest" });
+
+          // يمكن إضافة تأثير اهتزاز بسيط للنموذج لزيادة التفاعل؟ لا داعي.
+        });
+
+        // إعادة تعيين الرسالة عند الكتابة في أي حقل (تجربة محسنة)
+        const allInputs = [fullNameInput, emailInput, phoneInput];
+        allInputs.forEach((input) => {
+          input.addEventListener("input", function () {
+            // إذا كان المستخدم يعدل البيانات، نعيد الرسالة الافتراضية (اختياري ولكن محبب)
+            if (feedbackDiv.classList.contains("feedback-success")) {
+              feedbackDiv.classList.remove("feedback-success");
+            }
+            feedbackDiv.innerHTML =
+              "✏️ جارٍ تعديل البيانات ... سيتم تحديث الملخص بعد الإرسال";
+            feedbackDiv.style.background = "#f0f9ff";
+            feedbackDiv.style.borderRightColor = "#3a86ff";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
