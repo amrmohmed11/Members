@@ -1,0 +1,191 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family:
+    "Segoe UI", "Tajawal", system-ui, "Cairo", "Helvetica Neue", sans-serif;
+  padding: 1.5rem;
+}
+/* بطاقة النموذج */
+.form-card {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(0px);
+  border-radius: 2rem;
+  box-shadow:
+    0 25px 45px -12px rgba(0, 0, 0, 0.25),
+    0 8px 18px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 520px;
+  padding: 2rem 2rem 2.2rem;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.form-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 32px 55px -16px rgba(0, 0, 0, 0.3);
+}
+
+/* العنوان */
+.subhead {
+  text-align: center;
+  color: #5e6f8d;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px dashed #cbd5e1;
+  padding-bottom: 0.75rem;
+  display: inline-block;
+  width: auto;
+}
+/* تنسيق الحقول */
+.input-group {
+  margin-bottom: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.input-group label {
+  font-weight: 600;
+  color: #1e2f5e;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.input-group label i {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.required-star {
+  color: #e63946;
+  font-size: 1.2rem;
+  margin-right: 0.2rem;
+}
+.input-field {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid #e2e8f0;
+  border-radius: 1.25rem;
+  background-color: #ffffff;
+  transition: all 0.25s ease;
+  outline: none;
+  color: #0f172a;
+  font-weight: 500;
+}
+.input-field:focus {
+  border-color: #3a86ff;
+  box-shadow: 0 0 0 4px rgba(58, 134, 255, 0.2);
+  background-color: #fefefe;
+}
+.input-field::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+  font-size: 0.85rem;
+}
+/* زر الإرسال */
+.submit-btn {
+  background: linear-gradient(95deg, #1e3c72 0%, #2a5298 100%);
+  color: white;
+  border: none;
+  padding: 0.9rem 1.8rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: 2rem;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.25s;
+  margin-top: 0.8rem;
+  font-family: inherit;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  box-shadow: 0 5px 12px rgba(0, 20, 50, 0.2);
+}
+.submit-btn:hover {
+  background: linear-gradient(95deg, #0f2b4f 0%, #1f4080 100%);
+  transform: scale(0.98);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+.submit-btn:active {
+  transform: scale(0.96);
+}
+/* رسالة التغذية الراجعة */
+.feedback-message {
+  margin-top: 1.5rem;
+  background: #f0f9ff;
+  border-radius: 1.2rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #0c4e6e;
+  border-right: 4px solid #3a86ff;
+  transition: all 0.2s;
+  word-break: break-word;
+  font-weight: 500;
+}
+.feedback-success {
+  background: #e6f7ec;
+  color: #166534;
+  border-right-color: #22c55e;
+}
+/* تنسيق بسيط للهواتف */
+@media (max-width: 500px) {
+  .form-card {
+    padding: 1.5rem;
+  }
+  .form-title {
+    font-size: 1.6rem;
+  }
+  .input-field {
+    padding: 0.75rem 1rem;
+  }
+}
+/* جعل الأيقونات التلميحية جميلة */
+.input-group label::before {
+  content: "✨";
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+/* إزالة الأيقونة الافتراضية لآخر حقلين بشكل بسيط */
+.input-group:nth-child(2) label::before {
+  content: "📧";
+}
+.input-group:nth-child(3) label::before {
+  content: "📞";
+}
+/* استثناء الحقل الأول */
+.input-group:first-child label::before {
+  content: "👤";
+}
+/* تحسين اتجاه النص داخل الحقول عند كتابة عربي/إنجليزي */
+.input-field {
+  direction: ltr;
+  text-align: start;
+}
+/* لدعم الكتابة العربية بشكل طبيعي */
+.input-field[dir="auto"] {
+  direction: auto;
+}
+/* تعديل بسيط للراحة البصرية */
+footer {
+  font-size: 0.7rem;
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #7c8ba0;
+}

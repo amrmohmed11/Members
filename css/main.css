@@ -1,0 +1,375 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: linear-gradient(145deg, #e9f0fc 0%, #c9dcf5 100%);
+  font-family: "Almarai", sans-serif;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+:root {
+  --primary-color: #1e2b3c;
+  --secondary-color: #ffb347;
+}
+/* main card container */
+.glass-card {
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(0px);
+  border-radius: 40px;
+  box-shadow:
+    0 25px 45px -12px rgba(0, 0, 0, 0.25),
+    0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1280px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* header area with gradient and icon */
+.table-header {
+  background: linear-gradient(105deg, var(--primary-color) 0%, #1e3a4d 100%);
+  padding: 1.5rem 2rem 1.2rem 2rem;
+  border-bottom: 4px solid var(--secondary-color);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.title-text h1 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0;
+  color: white;
+  letter-spacing: -0.3px;
+}
+
+.title-text p {
+  margin: 0;
+  color: #cbdbe6;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.badge-counter {
+  background: var(--secondary-color);
+  color: var(--primary-color);
+  border-radius: 60px;
+  padding: 0.45rem 1.2rem;
+  font-weight: 800;
+  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+/* table wrapper responsive */
+.table-responsive-custom {
+  padding: 0rem 1.8rem 2rem 1.8rem;
+  background: transparent;
+}
+/* modern table design */
+.modern-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  margin: 0;
+}
+.modern-table thead tr {
+  background: transparent;
+}
+.modern-table th {
+  font-family: "Almarai", sans-serif;
+  font-weight: 800;
+  font-size: 1.05rem;
+  padding: 1rem 1rem;
+  background: #f1f5fc;
+  color: #1f3a4b;
+  border: none;
+  border-radius: 20px;
+  text-align: center;
+  letter-spacing: -0.2px;
+  transition: all 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+.modern-table th i {
+  margin-left: 8px;
+  color: var(--secondary-color);
+  font-size: 1.1rem;
+}
+.modern-table td {
+  background-color: #ffffff;
+  padding: 1rem 1rem;
+  border: none;
+  border-radius: 20px;
+  font-family: "Almarai", sans-serif;
+  font-weight: 700;
+  color: #1f2f3e;
+  text-align: center;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  vertical-align: middle;
+}
+/* hover effect rows */
+.modern-table tbody tr {
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+  cursor: default;
+}
+.modern-table tbody tr:hover td {
+  background: linear-gradient(120deg, #fff6eb, #fff2e6);
+  box-shadow: 0 10px 20px -8px rgba(0, 0, 0, 0.12);
+  transform: scale(1.002);
+  color: #1e2b2f;
+}
+/* special styling for password column */
+.password-cell {
+  font-family: "Almarai", monospace;
+  letter-spacing: 0.5px;
+  background: #fef7e8;
+  font-weight: 800;
+  color: #c25b00;
+  display: inline-block;
+  width: auto;
+  background: #fff0e0;
+  padding: 0.3rem 1rem;
+  border-radius: 60px;
+  font-size: 0.9rem;
+}
+.password-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.password-value {
+  background: #fff0e0;
+  padding: 0.3rem 1rem;
+  border-radius: 40px;
+  display: inline-block;
+  font-weight: 800;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+.copy-btn {
+  background: transparent;
+  border: none;
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  transition: 0.2s;
+  cursor: pointer;
+  padding: 0 5px;
+}
+.copy-btn:hover {
+  color: var(--primary-color);
+  transform: scale(1.1);
+}
+
+/* id and name stylish */
+.user-name {
+  font-weight: 800;
+  color: var(--primary-color);
+  position: relative;
+  display: inline-block;
+}
+
+.user-id {
+  font-family: monospace;
+  background: #eef3fc;
+  padding: 0.2rem 0.7rem;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+/* footer note */
+.card-footer-note {
+  background: #f8fafd;
+  padding: 1rem 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+  font-size: 0.8rem;
+  color: #5a6e7a;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* responsive adjustments */
+@media (max-width: 768px) {
+  .glass-card {
+    border-radius: 28px;
+  }
+  .table-responsive-custom {
+    padding: 0rem 1rem 1.5rem 1rem;
+  }
+  .modern-table th,
+  .modern-table td {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  .title-text h1 {
+    font-size: 1.3rem;
+  }
+  .badge-counter {
+    font-size: 0.7rem;
+    padding: 0.3rem 1rem;
+  }
+  .password-value {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .modern-table thead {
+    font-size: 0.7rem;
+  }
+  .modern-table th i {
+    display: none;
+  }
+}
+
+/* subtle animation */
+@keyframes fadeSlide {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.glass-card {
+  animation: fadeSlide 0.5s ease-out;
+}
+
+/* tooltip copy style */
+.copy-toast-msg {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e2b3c;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  font-family: "Almarai", sans-serif;
+}
+.modern-table th,
+.modern-table td {
+  text-align: center;
+}
+.copy-btn {
+  background: rgba(255, 140, 66, 0.1);
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+.copy-btn:hover {
+  background: var(--primary-color);
+  color: white;
+}
+.copy-btn i {
+  font-size: 0.9rem;
+}
+.user-name i {
+  margin-left: 6px;
+}
+.badge-counter i {
+  margin-left: 6px;
+}
+/* تحسين المظهر العام للهوامش */
+.glass-card {
+  transition: all 0.25s;
+}
+.modern-table td .user-id i {
+  margin-left: 4px;
+}
+/* إضافة خطوط دقيقة بين الأعمدة للجمال */
+.modern-table td {
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+footer i {
+  margin: 0 4px;
+}
+/* أيقونة رائعة للجدول */
+th i {
+  margin-left: 6px;
+}
+/* تحسين لون الخلفية لنسخ الزر */
+.password-wrapper {
+  gap: 10px;
+}
+
+@media (max-width: 550px) {
+  .password-value {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+  }
+  .copy-btn {
+    width: 28px;
+    height: 28px;
+  }
+}
+/* add mu */
+.add-m {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  background-color: #1e3345;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 60px;
+  transition: 1s !important;
+  height: 24px;
+  text-decoration: none;
+}
+.add-m i {
+  color: #fff;
+  font-size: 1.2rem;
+  font-size: 16px;
+}
+.add-m p {
+  margin: 0;
+  color: #fff;
+  display: none;
+}
+.add-m:hover {
+  width: max-content;
+}
+.add-m:hover p {
+  display: block;
+}
+.add-m:hover i {
+  margin-left: 8px;
+  transform: rotate(40deg);
+}
